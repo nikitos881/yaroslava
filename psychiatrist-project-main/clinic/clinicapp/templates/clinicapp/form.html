@@ -1,0 +1,28 @@
+{% extends './base.html' %}
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'clinicapp/css/form.css' %}">
+        {% block title %}
+            <title>Запис на консультацію</title>
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}
+            <div class="form-container">
+                <form method="POST">
+                    <h2 class="form-h2">Записатись на консультацію</h2>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn-form">Надіслати</button>
+                    <p id="result-text"></p>
+                </form>
+                <input type="text" value="{% url 'handle_request' %}" id="ajax-url" hidden>
+            </div>
+
+          
+        {% endblock %}
+    </body>
+</html>
